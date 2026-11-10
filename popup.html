@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
+<title>Prompt Queue</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="top">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 28 28" width="28" height="28" aria-hidden="true">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" style="stop-color:var(--accent-hi)"/>
+            <stop offset="1" style="stop-color:var(--accent-btn)"/>
+          </linearGradient>
+        </defs>
+        <rect width="28" height="28" rx="8" fill="url(#g)"/>
+        <rect x="6" y="7" width="16" height="3.2" rx="1.6" fill="#fff"/>
+        <rect x="6" y="12.4" width="12.4" height="3.2" rx="1.6" fill="#fff" fill-opacity=".78"/>
+        <rect x="6" y="17.8" width="8.4" height="3.2" rx="1.6" fill="#fff" fill-opacity=".52"/>
+      </svg>
+      <h1>Prompt Queue</h1>
+    </div>
+    <div id="pill" class="pill" data-state="idle" role="status" aria-live="polite">
+      <span class="dot"></span><span id="pillText">Ready</span>
+    </div>
+  </header>
+
+  <div id="banner" class="banner" hidden><span class="banner-dot"></span><span id="bannerText"></span></div>
+
+  <div id="head" class="head" hidden>
+    <span id="count" class="count"></span>
+    <button id="clear" class="link" type="button">Clear all</button>
+  </div>
+
+  <main class="scroll" id="scroll">
+    <ol id="list" class="list" hidden></ol>
+
+    <div id="empty" class="empty">
+      <svg width="132" height="104" viewBox="0 0 132 104" fill="none" aria-hidden="true">
+        <path d="M16 24v56" stroke="var(--line-strong)" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+        <circle cx="16" cy="14" r="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="2"/>
+        <circle cx="16" cy="52" r="8" fill="var(--bg)" stroke="var(--line-strong)" stroke-width="2"/>
+        <circle cx="16" cy="90" r="8" fill="var(--bg)" stroke="var(--line-strong)" stroke-width="2"/>
+        <rect x="36" y="3" width="92" height="22" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+        <rect x="46" y="12" width="58" height="4" rx="2" fill="var(--line-strong)"/>
+        <rect x="36" y="41" width="92" height="22" rx="8" fill="var(--surface)" stroke="var(--line)" opacity=".7"/>
+        <rect x="46" y="50" width="44" height="4" rx="2" fill="var(--line)"/>
+        <rect x="36" y="79" width="92" height="22" rx="8" fill="var(--surface)" stroke="var(--line)" opacity=".45"/>
+        <rect x="46" y="88" width="50" height="4" rx="2" fill="var(--line)"/>
+      </svg>
+      <p class="empty-title">Your queue is empty</p>
+      <p class="empty-text">Write a prompt below and press Enter. To add several at once, separate them with a line containing <code>---</code></p>
+    </div>
+  </main>
+
+  <div class="composer" id="composer">
+    <textarea id="input" rows="1" placeholder="Write a prompt, press Enter to add" aria-label="New prompt"></textarea>
+    <button id="add" class="add" type="button" aria-label="Add to queue" title="Add to queue" disabled></button>
+  </div>
+
+  <footer class="foot">
+    <button id="restart" class="secondary" type="button" hidden></button>
+    <button id="primary" class="primary" type="button" data-action="run"><span id="pIcon" class="p-icon"></span><span id="pLabel">Run queue</span></button>
+  </footer>
+
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
